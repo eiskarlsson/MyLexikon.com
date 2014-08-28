@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.19'
+gem 'therubyracer'
+gem 'remotipart', '~> 1.2'
+gem 'less-rails-bootstrap'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
