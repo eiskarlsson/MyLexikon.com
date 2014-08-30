@@ -1,0 +1,292 @@
+<div class="row row-offcanvas row-offcanvas-right">
+  <div class="col-xs-12 col-sm-9">
+    <p class="pull-right visible-xs">
+      <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+    </p>
+    <div>
+      <div>
+        <div class="row">
+          <div class="col-md-10">
+            <div class="well well-sm">
+              <div class="media">
+                <a class="thumbnail pull-left" href="#">
+                  <%= @profile.id.nil? ? (image_tag "http://critterapp.pagodabox.com/img/user.jpg", :class => "thumbnail")
+                      : (image_tag @profile.image_url(:thumb).to_s, :class => "thumbnail") %>
+                </a>
+                <%= f.file_field :image %> <br/>
+
+                <%= form_for @user, :url => users_path, :html => { :multipart => true } do |form| %>
+                    <%= form.file_field :avatar %>
+                <% end %>
+
+                <p><strong><%= current_user.name %></strong></p>
+
+
+
+                <!--<p><span class="label label-info">10 photos</span> <span class="label label-primary">89 followers</span>-->
+                <!--</p>-->
+              </div>
+              <p><%= link_to 'New Conversation', {:controller => "conversations", :action => "create", :profile => @profile.id} %></p>
+
+              <!--<p>-->
+              <!--<a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>-->
+              <!--<a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>-->
+              <!--<a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Unfollow</a>-->
+              <!--</p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+        <% @profile.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>
+<div class="row">
+  <div class="col-md-6 col-sm-6 col-lg-4">
+    <fieldset>
+      <legend>Basic Info</legend>
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class="badge badge-info"><%= f.label :sex, {:class => "control-label col-md-4"} %>  </span>
+        </div>
+
+        <div class="col-md-8">
+          <%= f.select(:sex, ['Male', 'Female'], {:class => "jetstrap-selected", :include_blank => 'Please select:'}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :age, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @ages = ('18'..'99').to_a %>
+          <%= f.select(:age, options_for_select(@ages, @profile.age.to_i.to_s), {:class => "jetstrap-selected", :include_blank => 'Please select:'}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :weight, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @weight = ('20'..'200').to_a %>
+          <%= f.select(:weight, options_for_select(@weight, @profile.weight.to_i.to_s), {:class => "jetstrap-selected", :include_blank => 'Please select:'}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :height, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @height = ('40'..'200').to_a %>
+          <%= f.select(:height, options_for_select(@height, @profile.height.to_i.to_s), {:class => "jetstrap-selected", :include_blank => 'Please select:'}) %>
+        </div>
+      </div>
+
+
+    </fieldset>
+  </div>
+  <!--/span-->
+  <div class="col-6 col-sm-6 col-lg-4">
+    <fieldset>
+      <legend>Body Info</legend>
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :eye_color, {:class => "control-label  col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @eye_color = ['Brown', 'Blue', 'Green', 'Other'] %>
+          <%= f.select(:eye_color, options_for_select(@eye_color, @profile.eye_color), {:class => "jetstrap-selected", :include_blank => "Please select:"}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :hair_color, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @hair_color = ['Red', 'Black', 'Brown', 'Blonde', 'Bald', 'Other'] %>
+          <%= f.select(:hair_color, options_for_select(@hair_color, @profile.hair_color), {:class => "jetstrap-selected", :include_blank => "Please select:"}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :smoking, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @smoking = ['I smoke', 'I don\'t smoke', 'I\'m not telling'] %>
+          <%= f.select(:smoking, options_for_select(@smoking, @profile.smoking), {:class => "jetstrap-selected", :include_blank => "Please select:"}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :drinking, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @drinking = ['I drink heavy', 'I \'m a social drinker', 'I don\'t drink', 'I\'m not telling'] %>
+          <%= f.select(:drinking, options_for_select(@drinking, @profile.drinking), {:class => "jetstrap-selected", :include_blank => "Please select:"}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :drugs, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @drugs = ['I use drugs', 'I don\'t use drugs', 'I\'m not telling'] %>
+          <%= f.select(:drugs, options_for_select(@drugs, @profile.drugs), {:class => "jetstrap-selected", :include_blank => "Please select:"}) %>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <!--/span-->
+  <div class="col-6 col-sm-6 col-lg-4">
+    <fieldset>
+      <legend>Social Info</legend>
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :job, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @job = ['I have a job', 'I don\'t have a job', 'I\'m not telling'] %>
+          <%= f.select(:job, options_for_select(@job, @profile.job), {:class => "jetstrap-selected", :include_blank => "Please select:"}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :education, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @education = ['None', 'High School', 'Some College', 'College', 'University'] %>
+          <%= f.select(:education, options_for_select(@education, @profile.education), {:class => "jetstrap-selected", :include_blank => 'Please select:'}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :ethnicity, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @ethnicity = ['Black', 'American Indian', 'White', 'Asian', 'Esquimaux'] %>
+          <%= f.select(:ethnicity, options_for_select(@ethnicity, @profile.ethnicity), {:class => "jetstrap-selected", :include_blank => 'Please select:'}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :religion, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @religion = ['Buddhist', 'Judaist', 'Christian', 'New Age', 'Atheist', 'Other'] %>
+          <%= f.select(:religion, options_for_select(@religion, @profile.religion), {:class => "jetstrap-selected", :include_blank => "Please select:"}) %>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <!--/span-->
+</div>
+<!--row-->
+<div class="row">
+  <div class="col-md-6 col-sm-6 col-lg-4">
+    <fieldset>
+      <legend>Other Info</legend>
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :diet, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @diet = ['I\'m on a diet', 'I \'m not on a diet', 'I\'m not telling'] %>
+          <%= f.select(:diet, options_for_select(@diet, @profile.diet), {:class => "jetstrap-selected", :include_blank => "Please select:"}) %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-0 col-sm-10">
+          <span class=" badge badge-info"><%= f.label :children, {:class => "control-label col-md-4"} %></span>
+        </div>
+        <div class="col-md-8">
+          <% @children = ['Don\'t have any', 'Have one', 'Have some', 'Want some', 'Other'] %>
+          <%= f.select(:children, options_for_select(@children, @profile.children), {:class => "jetstrap-selected", :include_blank => "Please select:"}) %>
+        </div>
+      </div>
+
+      <!--<div class="form-control">-->
+      <!--@Html.LabelFor(model => model.Languages, new { @class = "control-label col-md-4" })-->
+      <!--<div class="col-md-8">-->
+      <!--@Html.EditorFor(model => model.Languages)-->
+      <!--@Html.ValidationMessageFor(model => model.Languages)-->
+      <!--</div>-->
+      <!--</div>-->
+
+      <!--<div class="form-control">-->
+      <!--@Html.LabelFor(model => model.Pets, new { @class = "control-label col-md-4" })-->
+      <!--<div class="col-md-8">-->
+      <!--@Html.EditorFor(model => model.Pets)-->
+      <!--@Html.ValidationMessageFor(model => model.Pets)-->
+      <!--</div>-->
+      <!--</div>-->
+
+
+    </fieldset>
+  </div>
+
+</div>
+<!--/row-->
+
+<div class="top-buffer">
+
+  <div class="col-md-offset-7 col-md-10">
+    <div class="action" style="">
+      <%= f.submit :submit, :class => 'btn btn-primary' %>
+
+    </div>
+    <div style="clear:both"></div>
+  </div>
+</div>
+
+
+</div>
+<!--/span-->
+
+
+<!--<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">-->
+
+
+<!--<div class="list-group">-->
+<!--<a href="#" class="list-group-item active">Link</a>-->
+<!--<a href="#" class="list-group-item">Link</a>-->
+<!--<a href="#" class="list-group-item">Link</a>-->
+<!--<a href="#" class="list-group-item">Link</a>-->
+<!--<a href="#" class="list-group-item">Link</a>-->
+<!--<a href="#" class="list-group-item">Link</a>-->
+<!--<a href="#" class="list-group-item">Link</a>-->
+<!--<a href="#" class="list-group-item">Link</a>-->
+<!--<a href="#" class="list-group-item">Link</a>-->
+<!--<a href="#" class="list-group-item">Link</a>-->
+<!--</div>-->
+
+
+<!--</div>-->
+<!--/span-->
+</div>
+<!--/row-->
+
+
+</div><!--/.container-->
+
+<br/>

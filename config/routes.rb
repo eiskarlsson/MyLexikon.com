@@ -1,6 +1,16 @@
 MyLexikonCom::Application.routes.draw do
 
+  get "static_pages/home"
+
+  get "static_pages/help"
+
+  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
+
+  root :to => 'static_pages#home'
+
   resources :users
+
+  resources :profiles
 
   get "profiles/new"
 
@@ -8,13 +18,9 @@ MyLexikonCom::Application.routes.draw do
 
   get "profiles/show"
 
-  devise_for :users
 
-  get "static_pages/home"
 
-  get "static_pages/help"
 
-  root :to => 'static_pages#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
