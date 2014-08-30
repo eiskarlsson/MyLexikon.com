@@ -1,5 +1,12 @@
 MyLexikonCom::Application.routes.draw do
 
+  resources :users
+
+  get "profiles/new"
+
+  get "profiles/edit"
+
+  get "profiles/show"
 
   devise_for :users
 

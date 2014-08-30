@@ -9,6 +9,7 @@ gem 'less-rails-bootstrap'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'paperclip', '~> 4.2'
 
 group :development, :test do
   gem 'rspec-rails', '2.9.0'

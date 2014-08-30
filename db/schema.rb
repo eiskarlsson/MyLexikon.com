@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140830090710) do
+ActiveRecord::Schema.define(:version => 20140830115151) do
+
+  create_table "profiles", :force => true do |t|
+    t.integer  "age"
+    t.string   "body_type"
+    t.string   "children"
+    t.string   "diet"
+    t.string   "drinking"
+    t.string   "drugs"
+    t.string   "education"
+    t.string   "ethnicity"
+    t.string   "eye_color"
+    t.string   "hair_color"
+    t.float    "height"
+    t.string   "job"
+    t.string   "religion"
+    t.string   "sex"
+    t.string   "smoking"
+    t.integer  "weight"
+    t.string   "image"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,6 +49,10 @@ ActiveRecord::Schema.define(:version => 20140830090710) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
