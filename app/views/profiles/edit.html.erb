@@ -1,5 +1,12 @@
 <h1>Profiles#edit</h1>
 <p>Find me in app/views/profiles/edit.html.erb</p>
-<%= form_for @user, :url => users_path, :html => { :multipart => true } do |form| %>
-    <%= form.file_field :avatar %>
-<% end %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <%= form_for @profile, :url => profile_path(@profile), :html => {:multipart => true} do |f| %>
+        <%= render 'form', :f => f  %>
+
+
+
+    <% end %>
+  </div>
+</div>

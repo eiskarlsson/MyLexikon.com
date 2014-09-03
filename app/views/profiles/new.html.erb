@@ -2,15 +2,15 @@
 <p>Find me in app/views/profiles/new.html.erb</p>
 <div class="container-fluid">
   <div class="row-fluid">
-    <%= form_for @profile, url: profiles_new_path, :html => {:multipart => true} do |f| %>
-        <%= render 'form_new', :f => f  %>
-        </div>
-        </div>
+    <%= form_for @profile, url: profiles_path, :html => {:multipart => true} do |f| %>
+        <%= render 'form', :f => f  %>
+
 
 
     <% end %>
+    </div>
+    </div>
 
 
 
-
-    <%= link_to 'Back', root_path %>
+<%= link_to 'Back', root_path %>

@@ -1,5 +1,89 @@
 <h1>Profiles#show</h1>
 <p>Find me in app/views/profiles/show.html.erb</p>
-<%= image_tag @user.avatar.url %>
-<%= image_tag @user.avatar.url(:medium) %>
-<%= image_tag @user.avatar.url(:thumb) %>
+<p class="notice">
+  <%= notice %>
+</p>
+<%= image_tag @profile.avatar.url(:thumb) %>
+
+<p>
+  <b>Sex:</b>
+  <%= @profile.sex %>
+</p>
+
+<p>
+  <b>Age:</b>
+  <%= @profile.age %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%= @profile.weight %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%= @profile.height %>
+</p>
+
+<p>
+  <b>Ethnicity:</b>
+  <%= @profile.ethnicity %>
+</p>
+
+<p>
+  <b>Education:</b>
+  <%= @profile.education %>
+</p>
+
+<p>
+  <b>Job:</b>
+  <%= @profile.job %>
+</p>
+
+<p>
+  <b>Diet:</b>
+  <%= @profile.diet %>
+</p>
+
+<p>
+  <b>Drinking:</b>
+  <%= @profile.drinking %>
+</p>
+
+<p>
+  <b>Smoking:</b>
+  <%= @profile.smoking %>
+</p>
+
+<p>
+  <b>Drugs:</b>
+  <%= @profile.drugs %>
+</p>
+
+<p>
+  <b>Religion:</b>
+  <%= @profile.religion %>
+</p>
+
+<p>
+  <b>Hair color:</b>
+  <%= @profile.hair_color %>
+</p>
+
+<p>
+  <b>Eye color:</b>
+  <%= @profile.eye_color %>
+</p>
+
+<p>
+  <b>Body type:</b>
+  <%= @profile.body_type %>
+</p>
+
+<p>
+  <b>Children:</b>
+  <%= @profile.children %>
+</p>
+
+
+<%= link_to 'Back', root_path %>

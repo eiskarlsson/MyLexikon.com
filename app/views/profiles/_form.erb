@@ -10,23 +10,22 @@
             <div class="well well-sm">
               <div class="media">
                 <a class="thumbnail pull-left" href="#">
-                  <%= @profile.id.nil? ? (image_tag "http://critterapp.pagodabox.com/img/user.jpg", :class => "thumbnail")
-                      : (image_tag @profile.image_url(:thumb).to_s, :class => "thumbnail") %>
+                  <%= @profile.nil? ? (image_tag "http://critterapp.pagodabox.com/img/user.jpg", :class => "thumbnail")
+                      :  (image_tag @profile.avatar.url(:thumb) ) %>
                 </a>
-                <%= f.file_field :image %> <br/>
 
-                <%= form_for @user, :url => users_path, :html => { :multipart => true } do |form| %>
-                    <%= form.file_field :avatar %>
-                <% end %>
 
-                <p><strong><%= current_user.name %></strong></p>
+                <%= f.file_field :avatar %>
+
+
+                <p><strong><%= current_user.email %></strong></p>
 
 
 
                 <!--<p><span class="label label-info">10 photos</span> <span class="label label-primary">89 followers</span>-->
                 <!--</p>-->
               </div>
-              <p><%= link_to 'New Conversation', {:controller => "conversations", :action => "create", :profile => @profile.id} %></p>
+              <p></p>
 
               <!--<p>-->
               <!--<a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>-->

@@ -12,6 +12,10 @@ MyLexikonCom::Application.routes.draw do
 
   resources :profiles
 
+  #match '/profiles/new' => 'profiles#create', via: 'post' , :as => :profiles_create
+
+  #match 'profiles/:id' => "profiles#show",  via: 'get'  , :as => :profile_show
+
   get "profiles/new"
 
   get "profiles/edit"
