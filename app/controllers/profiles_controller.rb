@@ -22,11 +22,6 @@ class ProfilesController < ApplicationController
 
   def edit
     @profile = Profile.find(params[:id])
-    if @profile.update_attributes(params[:profile])
-      redirect_to @profile, notice: 'Profile successfully updated.'
-    else
-      redirect_to @profile, notice: 'No Changes.'
-    end
   end
 
   def show
