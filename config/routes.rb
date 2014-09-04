@@ -1,5 +1,9 @@
 MyLexikonCom::Application.routes.draw do
 
+  get "mbti_controller/index"
+
+  get "mbti_controller/create"
+
   root :to => 'static_pages#home'
 
   get "static_pages/home"
@@ -13,6 +17,8 @@ MyLexikonCom::Application.routes.draw do
   resources :users
 
   resources :profiles
+
+  resources :mbti_wizard
 
   #match '/profiles/new' => 'profiles#create', via: 'post' , :as => :profiles_create
 

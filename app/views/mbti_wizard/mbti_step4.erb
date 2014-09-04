@@ -1,0 +1,60 @@
+<div class="row-fluid">
+  <div class="span12">
+    <br/>
+    <div class="row-fluid">
+      <div class="span3">
+        Google ads
+      </div>
+      <div class="span9">
+        <div class="span9 well">
+
+
+
+
+          <%= form_tag({:controller => "mbti_wizard", :action => "update"}, :url => results_path, :method => "put", :class => "", :id => "MbtiForm") do %>
+              <% @mbti_tests[55..70].each do |mbti_test| %>
+
+
+
+                  <% if mbti_test.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(mbti_test.errors.count, "error") %> prohibited this test from being saved:</h2>
+
+                        <ul>
+                          <% mbti_test.errors.full_messages.each do |msg| %>
+                              <li><%= msg %></li>
+                          <% end %>
+                        </ul>
+                      </div>
+                  <% end %>
+
+
+                  <%= label_tag "labeltag", mbti_test.question, :class => 'badge badge-info'%> <br/>
+                  <%= radio_button_tag("radiobuttontag1" + mbti_test.question_number.to_s, "1") %>
+                  <%= label_tag("radiobuttontag1" + mbti_test.question_number.to_s + "_1", mbti_test.answer_a) %>
+                  <%= radio_button_tag("radiobuttontag1" + mbti_test.question_number.to_s, "0") %>
+                  <%= label_tag("radiobuttontag1" + mbti_test.question_number.to_s + "_0", mbti_test.answer_b) %>
+
+                  <br/>
+
+
+              <% end %>
+
+
+              <%= submit_tag "Continue", :class => 'btn btn-large btn-primary'%>
+
+
+
+
+          <% end %>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

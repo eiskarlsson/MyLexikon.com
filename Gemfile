@@ -10,6 +10,7 @@ gem 'less-rails-bootstrap'
 
 gem 'mysql2'
 gem 'paperclip', '~> 4.2'
+gem 'wicked'
 
 group :development, :test do
   gem 'rspec-rails', '2.9.0'

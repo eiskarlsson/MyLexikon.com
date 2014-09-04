@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140831084426) do
+ActiveRecord::Schema.define(:version => 20140904065809) do
+
+  create_table "mbti_tests", :force => true do |t|
+    t.integer  "question_number"
+    t.string   "question"
+    t.string   "answer_a"
+    t.string   "answer_b"
+    t.string   "language"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "profiles", :force => true do |t|
     t.integer  "age"
