@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140904065809) do
+ActiveRecord::Schema.define(:version => 20140904165522) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "is_answer_a"
+    t.integer  "question_number"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "mbti_tests", :force => true do |t|
     t.integer  "question_number"
@@ -48,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20140904065809) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "mbti_test"
   end
 
   create_table "users", :force => true do |t|

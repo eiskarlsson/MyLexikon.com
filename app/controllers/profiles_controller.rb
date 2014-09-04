@@ -1,4 +1,8 @@
 class ProfilesController < ApplicationController
+  before_filter :authenticate_user!,
+                only: [:edit, :update, :destroy]
+
+
   # GET /profiles
   # GET /profiles.json
   def index

@@ -20,6 +20,8 @@ MyLexikonCom::Application.routes.draw do
 
   resources :mbti_wizard
 
+  match '/results', to: 'mbti#calculate', via: 'get'
+
   #match '/profiles/new' => 'profiles#create', via: 'post' , :as => :profiles_create
 
   #match 'profiles/:id' => "profiles#show",  via: 'get'  , :as => :profile_show

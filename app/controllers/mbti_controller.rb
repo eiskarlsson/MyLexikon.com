@@ -1,4 +1,5 @@
 class MbtiController < ApplicationController
+  before_filter :authenticate_user!
   @mbti_type
 
   # GET /mbti_tests
@@ -172,7 +173,9 @@ class MbtiController < ApplicationController
       format.xml { render xml: @mbti_type }
     end
 
-    @profile = Profile.find(current_user.id)
+    @profile = current_user.profile
+    current_user.profile.mbti_test = @mbti_type
+    current_user.profile.save
   end
 
 
